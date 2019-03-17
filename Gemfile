@@ -10,6 +10,10 @@ gem 'jwt'
 gem 'bcrypt'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+gem 'i18n', '~> 0.7.0'
+gem 'nokogiri', '1.6.8.1'
+gem 'activesupport', '~> 5.0'
+# gem 'faker', '~> 1.6', '>= 1.6.6'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -26,10 +30,11 @@ gem 'puma', '~> 3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
 end
 
 group :development do
-	gem 'faker'
+  # gem 'faker', '~> 1.6', '>= 1.6.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
