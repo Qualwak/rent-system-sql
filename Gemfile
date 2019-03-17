@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+	gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

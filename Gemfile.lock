@@ -43,6 +43,8 @@ GEM
     builder (3.2.3)
     concurrent-ruby (1.1.5)
     erubis (2.7.0)
+    faker (1.9.3)
+      i18n (>= 0.7)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -111,12 +113,10 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   byebug
+  faker
   jwt
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   simple_command
   sqlite3
   tzinfo-data
-
-BUNDLED WITH
-   1.13.6

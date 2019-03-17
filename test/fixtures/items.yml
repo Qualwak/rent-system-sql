@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  duration: 1
+  price: 9.99
+  user: one
+  subcategory: one
+  title: MyString
+  description: MyText
+
+two:
+  duration: 1
+  price: 9.99
+  user: two
+  subcategory: two
+  title: MyString
+  description: MyText
