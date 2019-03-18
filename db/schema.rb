@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20190317171654) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20190317171654) do
     t.text     "description"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["subcategory_id"], name: "index_items_on_subcategory_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
+    t.index ["subcategory_id"], name: "index_items_on_subcategory_id", using: :btree
+    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -40,8 +43,8 @@ ActiveRecord::Schema.define(version: 20190317171654) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["item_id"], name: "index_orders_on_item_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["item_id"], name: "index_orders_on_item_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 20190317171654) do
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_subcategories_on_category_id"
+    t.index ["category_id"], name: "index_subcategories_on_category_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +68,9 @@ ActiveRecord::Schema.define(version: 20190317171654) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "items", "subcategories"
+  add_foreign_key "items", "users"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "users"
+  add_foreign_key "subcategories", "categories"
 end

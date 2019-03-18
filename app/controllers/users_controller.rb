@@ -11,9 +11,14 @@ class UsersController < ApplicationController
     render json: {status: 'success', data: @users}, status: :ok
   end
 
+
   # GET /users/1
   def show
     render json: {status: 'success', data: @user}, status: :ok
+  end
+
+  def present_user
+    render json: { user: AuthorizeApiRequest.call}
   end
 
   # POST /users
@@ -46,15 +51,15 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      # params.require(:user).permit(:password, :username, :email, :name, :surname, :phone, :role_id)
-      # to create a user, we need only these parameters
-      params.require(:user).permit(:password, :email, :role_id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    # params.require(:user).permit(:password, :username, :email, :name, :surname, :phone, :role_id)
+    # to create a user, we need only these parameters
+    params.require(:user).permit(:password, :email, :role_id, :name, :surname, :phone)
+  end
 end
