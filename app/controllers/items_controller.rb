@@ -5,12 +5,12 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
 
-    render json: @items
+    render json: {status: 'success', data: @items}, status: :ok
   end
 
   # GET /items/1
   def show
-    render json: @item
+    render json: {status: 'success', data: @item}, status: :ok
   end
 
   # POST /items
@@ -18,24 +18,25 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      render json: @item, status: :created, location: @item
+      render json: {status: 'success', data: @item}, status: :ok
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @item.errors}, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /items/1
   def update
     if @item.update(item_params)
-      render json: @item
+      render json: {status: 'success', data: @item}, status: :ok
     else
-      render json: @item.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @item.errors}, status: :unprocessable_entity
     end
   end
 
   # DELETE /items/1
   def destroy
     @item.destroy
+    render json: {status: 'success', data: nil}, status: :ok
   end
 
   private

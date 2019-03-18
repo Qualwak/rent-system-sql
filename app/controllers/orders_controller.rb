@@ -5,12 +5,12 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
 
-    render json: @orders
+    render json: {status: 'success', data: @orders}, status: :ok
   end
 
   # GET /orders/1
   def show
-    render json: @order
+    render json: {status: 'success', data: @order}, status: :ok
   end
 
   # POST /orders
@@ -18,24 +18,25 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     if @order.save
-      render json: @order, status: :created, location: @order
+      render json: {status: 'success', data: @order}, status: :ok
     else
-      render json: @order.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @order.errors}, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
-      render json: @order
+      render json: {status: 'success', data: @order}, status: :ok
     else
-      render json: @order.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @order.errors}, status: :unprocessable_entity
     end
   end
 
   # DELETE /orders/1
   def destroy
     @order.destroy
+    render json: {status: 'success', data: nil}, status: :ok
   end
 
   private

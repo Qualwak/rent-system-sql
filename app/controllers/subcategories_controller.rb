@@ -5,12 +5,12 @@ class SubcategoriesController < ApplicationController
   def index
     @subcategories = Subcategory.all
 
-    render json: @subcategories
+    render json: {status: 'success', data: @subcategories}, status: :ok
   end
 
   # GET /subcategories/1
   def show
-    render json: @subcategory
+    render json: {status: 'success', data: @subcategory}, status: :ok
   end
 
   # POST /subcategories
@@ -18,24 +18,28 @@ class SubcategoriesController < ApplicationController
     @subcategory = Subcategory.new(subcategory_params)
 
     if @subcategory.save
-      render json: @subcategory, status: :created, location: @subcategory
+      # render json: @subcategory, status: :created, location: @subcategory
+      render json: {status: 'success', data: @subcategory}, status: :created, location: @subcategory
     else
-      render json: @subcategory.errors, status: :unprocessable_entity
+      #render json: @subcategory.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @subcategory.errors}, status: :unprocessable_entity
+
     end
   end
 
   # PATCH/PUT /subcategories/1
   def update
     if @subcategory.update(subcategory_params)
-      render json: @subcategory
+      render json: {status: 'success', data: @subcategory}, status: :ok
     else
-      render json: @subcategory.errors, status: :unprocessable_entity
+      render json: {status: 'fail', data: @subcategory.errors}, status: :unprocessable_entity
     end
   end
 
   # DELETE /subcategories/1
   def destroy
     @subcategory.destroy
+    render json: {status: 'success', data: nil}, status: :ok
   end
 
   private
@@ -46,6 +50,6 @@ class SubcategoriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def subcategory_params
-      params.require(:subcategory).permit(:title, :description, :category_id)
+      params.require(:subcategory).permit(:title, :text, :category)
     end
 end
