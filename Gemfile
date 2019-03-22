@@ -45,6 +45,13 @@ group :development do
 #   gem 'rails_12factor'
 end
 
+group :test do
+  gem 'factory_bot_rails', '~> 4.0'
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'faker'
+  gem 'database_cleaner'
+end
+
 # group :production do
 #   # gem 'pg', '~> 0.18.4'
 #   gem 'pg', '~> 1.1.4'
