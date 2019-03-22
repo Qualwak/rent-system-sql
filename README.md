@@ -17,4 +17,4 @@
 ```
 gem install rails
 ```
-**3. Front end part of the project [here] (https://github.com/SerMarkin/rent-system)**
+**3. Front end part of the project [here](https://github.com/SerMarkin/rent-system)**
