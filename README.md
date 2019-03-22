@@ -1,6 +1,7 @@
 # InnoRent
-**Short Description:** System to rent any physical item
-**Subject:** Software Project, Spring 2019
+**Short Description:** System to rent any physical item.
+
+**Subject:** Software Project, Spring 2019.
 
 ## Getting Started
 ### Prerequisites
