@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :orders
   resources :subcategories
   resources :categories
-  post 'authenticate', to: 'authentication#authenticate'
   resources :application
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'current_user', to: 'users#current_user'
+  get '/users/:id/items', to: 'users#get_user_items'
+  post 'authenticate', to: 'authentication#authenticate'
 end
