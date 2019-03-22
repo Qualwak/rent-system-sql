@@ -4,14 +4,14 @@
   <p><b>Subject:</b> Software Project, Spring 2019</p>
 </div>
 <h2>Getting Started</h2>
-### Prerequisites
-1. Install Ruby 2.4.5.
+<h3>Prerequisites</h3>
+<p>1. Install Ruby 2.4.5.</p>
 
-##### For Linux/UNIX:
+<h5>For Linux/UNIX:</h5>
 <p><a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io">RVM</a></p>
-##### For macOS:
+<h5>For macOS:</h5>
 <p><a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io">RVM</a></p>
-##### For Windows:
+<h5>For Windows:</h5>
 <p><a href="https://rubyinstaller.org">RubyInstaller</a></p>
 
 2. Install Rails gem.
