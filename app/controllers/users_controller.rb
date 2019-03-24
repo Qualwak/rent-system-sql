@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   # GET /current_user
   def current_user
-    render json: { user: AuthorizeApiRequest.call(request.headers).result }
+    render json: { status: 'success', data: AuthorizeApiRequest.call(request.headers).result }
   end
 
   # POST /users
