@@ -35,7 +35,7 @@
 * **Success Response:**
 
   * **Code:** 201 <br />
-    **Content:** `{ status : "success", data : { "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1, "created_at" : "2019-03-31T05:06:51.758Z", "updated_at" : "2019-03-31T05:06:51.758Z" } }'
+    **Content:** `{ status : "success", data : { "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1, "created_at" : "2019-03-31T05:06:51.758Z", "updated_at" : "2019-03-31T05:06:51.758Z" } }`
  
 * **Error Response:**
 
