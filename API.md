@@ -39,14 +39,9 @@
  
 * **Error Response:**
 
-  * **Code:** 404 NOT FOUND <br />
-    **Content:** `{ error : "User doesn't exist" }`
-
-  OR
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Not Authorized" }`
-
+  * **Code:** 422 UNPROCESSABLE ENTITY <br />
+    **Content:** `{status: "fail", data: { email: ["can't be blank"] } }`
+ 
 **Show User**
 ----
   Returns json data about a single user.
@@ -81,8 +76,13 @@
  
 * **Error Response:**
 
-  * **Code:** 422 UNPROCESSABLE ENTITY <br />
-    **Content:** `{status: "fail", data: { email: ["can't be blank"] } }`
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "User doesn't exist" }`
+
+  OR
+
+  * **Code:** 401 UNAUTHORIZED <br />
+    **Content:** `{ error : "Not Authorized" }` 
  
 **Show Current User**
 ----
