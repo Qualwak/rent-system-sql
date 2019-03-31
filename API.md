@@ -35,12 +35,54 @@
 * **Success Response:**
 
   * **Code:** 201 <br />
-    **Content:** `{ id : 12, username : "tGaripov", email : "tgaripov@gmail.com", name : "Tagir", surname : "Garipov", phone : "89179232662", role_id : 1 }`
+    **Content:** `{ status : "success", data : { "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1, "created_at" : "2019-03-31T05:06:51.758Z", "updated_at" : "2019-03-31T05:06:51.758Z" } }'
  
 * **Error Response:**
 
   * **Code:** 422 UNPROCESSABLE ENTITY <br />
-    **Content:** `{status: "fail", data: { email: ["can't be blank"] } }`
+    **Content:** `{status: "fail", data: { "email" : ["can't be blank"] } }`
+    
+**Authenticate user**
+----
+  Register user and returns json data about a single user.
+
+* **URL**
+
+  /authenticate
+
+* **Method:**
+
+  `POST`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   None
+
+* **Headers:**
+
+  None
+  
+* **Body:**
+
+  **Required:**
+ 
+   `email=[string], password=[string]`
+   
+   **Non-required:**
+   
+   None
+   
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ "auth_token" : "<user-token>" }`
+ 
+* **Error Response:**
+
+  * **Code:** 422 UNPROCESSABLE ENTITY <br />
+    **Content:** `{status: "fail", data: { "email" : ["can't be blank"] } }`
  
 **Show User**
 ----
@@ -72,7 +114,7 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12, username : "tGaripov", email : "tgaripov@gmail.com", name : "Tagir", surname : "Garipov", phone : "89179232662", role_id : 1 }`
+    **Content:** `{ status: "success", data = { "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1 } }`
  
 * **Error Response:**
 
@@ -90,7 +132,7 @@
 
 * **URL**
 
-  /users/current-user
+  /current-user
 
 * **Method:**
 
@@ -114,9 +156,46 @@
 * **Success Response:**
 
   * **Code:** 200 <br />
-    **Content:** `{ id : 12, username : "tGaripov", email : "tgaripov@gmail.com", name : "Tagir", surname : "Garipov", phone : "89179232662", role_id : 1 }`
+    **Content:** `{ "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1 }`
  
 * **Error Response:**
 
   * **Code:** 401 UNAUTHORIZED <br />
     **Content:** `{ error : "Not Authorized" }`
+
+**Show all users**
+----
+  Return json data about all users.
+
+* **URL**
+
+  /users
+
+* **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   None
+
+* **Headers:**
+
+  * **Key:** `Authorization`
+    **Value:** `<your token>`
+ 
+* **Body:**
+
+  None
+   
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** `{ "id" : 12, "username" : "tGaripov", "email" : "tgaripov@gmail.com", "name" : "Tagir", "surname" : "Garipov", "phone" : "89179232662", "role_id" : 1 }`
+ 
+* **Error Response:**
+
+  * **Code:** 422 UNPROCESSABLE ENTITY <br />
+    **Content:** `{ status: "fail", data: { email: ["can't be blank"] } }`
