@@ -42,7 +42,8 @@ POST
 
 * **Headers:**
 
-  - `Key: Authorization, Value: your token`
+  * **Key:** `Authorization`
+    **Value:** `<your token>`
 
 * **Body:**
 
