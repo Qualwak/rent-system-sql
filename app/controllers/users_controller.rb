@@ -48,7 +48,24 @@ class UsersController < ApplicationController
   def get_items_i_rented
     @current_user = AuthorizeApiRequest.call(request.headers).result
     @orders = Order.where(user_id: @current_user.id)
-    render json: { status: 'success', data: @orders }
+    # @items = Item.where(id: @orders.item_id)
+    # name = @items.first.title
+    # @orders.each do |order|
+    #
+    # end
+    @names_hash = []
+    @orders.each do |order|
+      @items = Item.where(id: order.item_id)
+      @names_hash << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
+                      status: order.status, description: order.description, final_price: (@items.first.price.* order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
+      # @names_hash << {order: order, final_price: (@items.first.price.* order.duration.to_i)}
+    end
+    render json: { status: 'success', data: @names_hash}
+    # render json: { status: 'success', data: @orders }
+  end
+
+  def return_item_name(id)
+    name = Item.where(id: id).title
   end
 
   # GET /my-orders/rent
@@ -56,7 +73,22 @@ class UsersController < ApplicationController
     @current_user = AuthorizeApiRequest.call(request.headers).result
     @orders = Order.where("item_id IN (SELECT item_id FROM items WHERE user_id = #{@current_user.id})")
     # @orders = Order.joins(:item).where('items.user_id' => @current_user.id)
-    render json: { status: 'success', data: @orders }
+    # @orders.each do |order|
+    #   order["price"] = 1
+    # end
+    # @names = []
+    # @orders.each do |order|
+    #   @names << Item.where(id: order.item_id)
+    # end
+    @names_hash = []
+    @orders.each do |order|
+      @items = Item.where(id: order.item_id)
+      @names_hash << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
+      status: order.status, description: order.description, final_price: (@items.first.price.* order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
+      # @names_hash << {order: order, final_price: (@items.first.price.* order.duration.to_i)}
+    end
+    render json: { status: 'success', data: @names_hash}
+    # render json: { status: 'success', data: @orders, names: @names}
   end
 
   # PATCH/PUT /users/1
