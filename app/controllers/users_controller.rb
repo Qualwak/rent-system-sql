@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   def get_user_items
     @current_user = AuthorizeApiRequest.call(request.headers).result
     @items = Item.where(user_id: @current_user.id)
+
     render json: { data: @items }
   end
 
@@ -48,47 +49,16 @@ class UsersController < ApplicationController
   def get_items_i_rented
     @current_user = AuthorizeApiRequest.call(request.headers).result
     @orders = Order.where(user_id: @current_user.id)
-    # @items = Item.where(id: @orders.item_id)
-    # name = @items.first.title
-    # @orders.each do |order|
-    #
-    # end
-    @names_hash = []
-    @orders.each do |order|
-      @items = Item.where(id: order.item_id)
-      @names_hash << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
-                      status: order.status, description: order.description, final_price: (@items.first.price.* order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
-      # @names_hash << {order: order, final_price: (@items.first.price.* order.duration.to_i)}
-    end
-    render json: { status: 'success', data: @names_hash}
-    # render json: { status: 'success', data: @orders }
-  end
 
-  def return_item_name(id)
-    name = Item.where(id: id).title
+    render json: { status: 'success', data: return_orders_output(@orders) }
   end
 
   # GET /my-orders/rent
   def get_items_i_rent
     @current_user = AuthorizeApiRequest.call(request.headers).result
     @orders = Order.where("item_id IN (SELECT item_id FROM items WHERE user_id = #{@current_user.id})")
-    # @orders = Order.joins(:item).where('items.user_id' => @current_user.id)
-    # @orders.each do |order|
-    #   order["price"] = 1
-    # end
-    # @names = []
-    # @orders.each do |order|
-    #   @names << Item.where(id: order.item_id)
-    # end
-    @names_hash = []
-    @orders.each do |order|
-      @items = Item.where(id: order.item_id)
-      @names_hash << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
-      status: order.status, description: order.description, final_price: (@items.first.price.* order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
-      # @names_hash << {order: order, final_price: (@items.first.price.* order.duration.to_i)}
-    end
-    render json: { status: 'success', data: @names_hash}
-    # render json: { status: 'success', data: @orders, names: @names}
+
+    render json: { status: 'success', data: return_orders_output(@orders) }
   end
 
   # PATCH/PUT /users/1
@@ -114,11 +84,6 @@ class UsersController < ApplicationController
     else
       json_response(nil, :not_found)
     end
-    # if User.find(params[:id]).present?
-    #   @user = User.find(params[:id])
-    # else
-    #   json_response(nil, :not_found)
-    # end
   end
 
   # Only allow a trusted parameter "white list" through.
@@ -126,4 +91,19 @@ class UsersController < ApplicationController
     # to create a user, we need only these parameters
     params.require(:user).permit(:password, :email, :role_id, :name, :surname, :phone)
   end
+
+  def return_orders_output(orders)
+    list_of_orders = []
+    orders.each do |order|
+      price = return_item_price order.item_id
+      list_of_orders << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
+                      status: order.status, description: order.description, final_price: (price * order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
+    end
+    list_of_orders
+  end
+
+  def return_item_price(item_id)
+    Item.where(id: item_id).first.price
+  end
+
 end
