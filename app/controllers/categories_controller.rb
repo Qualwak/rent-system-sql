@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1/subcategories
   def get_subcategories
     @subcategories = Subcategory.where(:category_id => params[:id])
-    render json: { data: @subcategories }
+    render json: { status: 'success', data: @subcategories }
   end
 
   # POST /categories

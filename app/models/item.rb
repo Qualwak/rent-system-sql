@@ -3,5 +3,5 @@ class Item < ApplicationRecord
   belongs_to :subcategory
   has_many :orders, dependent: :destroy
 
-  validates_presence_of :user_id, :title, :description, :price, :duration#, :subcategory_id
+  validates_presence_of :user_id, :title, :description, :price, :duration #, :subcategory_id
 end
