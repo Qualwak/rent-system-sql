@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :destroy]
   skip_before_action :authenticate_request, only: [:index, :show]
+  # wrap_parameters :user, include: [:description, :duration, :username,
+  #                                  :surname, :phone, :role_id,
+  #                                  :password, :password_confirmation]
+
 
   # GET /items
   def index
@@ -48,6 +52,6 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:user_id, :title, :description, :subcategory_id, :price)
+      params.require(:item).permit(:user_id, :title, :duration,:description, :subcategory_id, :price)
     end
 end
