@@ -96,8 +96,12 @@ class UsersController < ApplicationController
     list_of_orders = []
     orders.each do |order|
       price = return_item_price order.item_id
+      @lessee = User.where(id: order.user_id).first
+      # @lessor = User.where()
       list_of_orders << {id: order.id, item_id: order.item_id, user_id: order.user_id, duration: order.duration,
-                      status: order.status, description: order.description, final_price: (price * order.duration.to_i), created_at: order.created_at, updated_at: order.updated_at}
+                      status: order.status, description: order.description, final_price: (price * order.duration.to_i),
+                      lessee_email: @lessee.email, lessee_phone: @lessee.phone,
+                         created_at: order.created_at, updated_at: order.updated_at}
     end
     list_of_orders
   end
