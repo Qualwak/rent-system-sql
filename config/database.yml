@@ -4,8 +4,9 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-#default: &default
+# default: &default
 #  adapter: sqlite3
+# <<<<<<< develop
 #  pool: 5
 #  timeout: 5000
 #
@@ -29,6 +30,7 @@ default: &default
   encoding: unicode
   pool: 5
 
+
 development:
   <<: *d9lemc33bttm03
   database: rent_service_development
@@ -38,6 +40,7 @@ test:
   database: rent_service_test
 
 production:
+# <<<<<<< develop
   <<: *default
   database: d9lemc33bttm03
   username: woolmlfolnbkde
