@@ -13,6 +13,12 @@ class CategoriesController < ApplicationController
     render json: {status: 'success', data: @category}, status: :ok
   end
 
+  # GET /categories/1/subcategories
+  def get_subcategories
+    @subcategories = Subcategory.where(:category_id => params[:id])
+    render json: { status: 'success', data: @subcategories }
+  end
+
   # POST /categories
   def create
     @category = Category.new(category_params)

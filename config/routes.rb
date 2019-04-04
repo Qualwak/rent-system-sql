@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   resources :orders
   resources :subcategories
   resources :categories
-  post 'authenticate', to: 'authentication#authenticate'
   resources :application
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'current-user', to: 'users#current_user'
+  # get '/users/:id/items', to: 'users#get_user_items'
+  get '/my-items', to: 'users#get_user_items'
+  get '/my-orders/rented', to: 'users#get_items_i_rented'
+  get '/my-orders/rent', to: 'users#get_items_i_rent'
+  get '/categories/:id/subcategories', to: 'categories#get_subcategories'
+  get '/all-categories', to: 'categories#get_all_categories'
+  post 'authenticate', to: 'authentication#authenticate'
 end
