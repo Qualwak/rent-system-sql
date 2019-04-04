@@ -32,14 +32,10 @@ default: &default
 development:
   <<: *d9lemc33bttm03
   database: rent_service_development
-  username: woolmlfolnbkde
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
 test:
   <<: *d9lemc33bttm03
   database: rent_service_test
-  username: woolmlfolnbkde
-  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
 
 production:
   <<: *default
