@@ -1,24 +1,21 @@
-# README
+# InnoRent
+**Short Description:** System to rent any physical item.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Subject:** Software Project, Spring 2019.
 
-Things you may want to cover:
+## Getting Started
+### Prerequisites
+**1. Install Ruby 2.4.5.**
 
-* Ruby version
+  ###### For Linux/UNIX:
+  [rbenv](https://github.com/rbenv/rbenv) or [RVM](https://rvm.io)
+  ###### For macOS:
+  [rbenv](https://github.com/rbenv/rbenv) or [RVM](https://rvm.io)
+  ###### For Windows:
+  [RubyInstaller](https://rubyinstaller.org)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**2. Install Rails gem.**
+```
+gem install rails
+```
+**3. Front end part of the project [here](https://github.com/SerMarkin/rent-system)**

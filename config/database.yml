@@ -4,22 +4,40 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-default: &default
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+#default: &default
+#  adapter: sqlite3
+#  pool: 5
+#  timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+    database: d9lemc33bttm03
+    adapter: postgresql
+    host: ec2-54-204-46-60.compute-1.amazonaws.com
+    port: 5432
+    user: woolmlfolnbkde
+    password: 364fcf602646b2313a5e137c31b59269e2193944666c72b0c4d30822ab41bdd4
+    timeout: 1000
+#  <<: *default
+#  database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: db/test.sqlite3
+    database: d9lemc33bttm03
+    adapter: postgresql
+    host: ec2-54-204-46-60.compute-1.amazonaws.com
+    port: 5432
+    user: woolmlfolnbkde
+    password: 364fcf602646b2313a5e137c31b59269e2193944666c72b0c4d30822ab41bdd4
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+    database: d9lemc33bttm03
+    adapter: postgresql
+    host: ec2-54-204-46-60.compute-1.amazonaws.com
+    port: 5432
+    user: woolmlfolnbkde
+    password: 364fcf602646b2313a5e137c31b59269e2193944666c72b0c4d30822ab41bdd4
+    wait_timeout: 900
+#  <<: *default
+#  database: db/production.sqlite3
