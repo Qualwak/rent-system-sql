@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   get '/my-orders/rent', to: 'users#get_items_i_rent'
   get '/categories/:id/subcategories', to: 'categories#get_subcategories'
   get '/all-categories', to: 'categories#get_all_categories'
+  get '/subcategories/:id/items', to: 'subcategories#show_items'
   post 'authenticate', to: 'authentication#authenticate'
 end

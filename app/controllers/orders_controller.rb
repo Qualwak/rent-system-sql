@@ -16,12 +16,32 @@ class OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
+    @lessee = User.where(id: @order.user_id).first
+    @item = Item.where(id: @order.item_id).first
+    @possible_existing_orders = Order.where(item_id: @order.item_id)
 
-    if @order.save
-      render json: {status: 'success', data: @order}, status: :ok
-    else
-      render json: {status: 'fail', data: @order.errors}, status: :unprocessable_entity
-    end
+    # minor changes for logic
+    # flag = false
+    # @possible_existing_orders.each do |existing_order|
+    #   if [1, 4, 5, 6, 7].include? existing_order.status
+    #     flag = true
+    #     break
+    #   end
+    # end
+
+    # if flag
+      if @lessee.id == @item.user_id
+        render json: { status: 'fail', data: "", message: 'You cannot rent from yourself' }, status: :unprocessable_entity
+      else
+        if @order.save
+          render json: {status: 'success', data: @order}, status: :ok
+        else
+          render json: {status: 'fail', data: @order.errors}, status: :unprocessable_entity
+        end
+      end
+    # else
+    #   render json: { status: 'fail', data: '', message: 'Order is active' }, status: :ok
+    # end
   end
 
   # PATCH/PUT /orders/1
