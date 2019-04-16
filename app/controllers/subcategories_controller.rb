@@ -1,5 +1,7 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :update, :destroy]
+  skip_before_action :authenticate_request, only: [:index, :show, :show_items]
+
 
   # GET /subcategories
   def index
